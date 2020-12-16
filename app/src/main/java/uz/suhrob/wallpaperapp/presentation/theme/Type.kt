@@ -1,4 +1,4 @@
-package uz.suhrob.wallpaperapp.ui
+package uz.suhrob.wallpaperapp.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

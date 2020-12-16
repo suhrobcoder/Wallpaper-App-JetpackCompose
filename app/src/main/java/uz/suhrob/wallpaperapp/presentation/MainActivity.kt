@@ -1,4 +1,4 @@
-package uz.suhrob.wallpaperapp
+package uz.suhrob.wallpaperapp.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
-import uz.suhrob.wallpaperapp.ui.WallpaperAppTheme
+import uz.suhrob.wallpaperapp.presentation.theme.WallpaperAppTheme
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package uz.suhrob.wallpaperapp
+package uz.suhrob.wallpaperapp.presentation
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

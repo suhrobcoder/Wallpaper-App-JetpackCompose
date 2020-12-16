@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WallpaperApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.WallpaperApp.NoActionBar">
             <intent-filter>
