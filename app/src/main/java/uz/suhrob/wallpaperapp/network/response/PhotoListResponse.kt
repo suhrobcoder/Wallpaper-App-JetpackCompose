@@ -3,7 +3,7 @@ package uz.suhrob.wallpaperapp.network.response
 import com.google.gson.annotations.SerializedName
 import uz.suhrob.wallpaperapp.network.model.PhotoDto
 
-data class PhotoList(
+data class PhotoListResponse(
     @SerializedName("total_results")
     val totalResults: Int,
 
