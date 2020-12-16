@@ -18,4 +18,12 @@ class PhotoDtoMapper : DomainMapper<PhotoDto, Photo> {
             url = domainModel.url,
             source = PhotoSource(portrait = domainModel.portraitUrl)
         )
+
+    fun toDomainList(models: List<PhotoDto>): List<Photo> {
+        return models.map { mapToDomainModel(it) }
+    }
+
+    fun fromDomainList(domainModels: List<Photo>): List<PhotoDto> {
+        return domainModels.map { mapFromDomainModel(it) }
+    }
 }
