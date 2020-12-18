@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.suhrob.wallpaperapp.network.PexelsService
 import uz.suhrob.wallpaperapp.network.model.PhotoDtoMapper
-import uz.suhrob.wallpaperapp.util.BASE_URL
+import uz.suhrob.wallpaperapp.other.BASE_URL
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
