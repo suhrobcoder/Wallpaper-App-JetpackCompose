@@ -3,10 +3,12 @@ package uz.suhrob.wallpaperapp.presentation.components
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -18,7 +20,8 @@ fun SearchBox(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = TextStyle(),
-    actionDone: () -> Unit = {}
+    onTextInputStarted: (SoftwareKeyboardController) -> Unit = {},
+    actionSearch: () -> Unit = {}
 ) {
     OutlinedTextField(
         value = value,
@@ -26,17 +29,21 @@ fun SearchBox(
         modifier = modifier,
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
-            imeAction = ImeAction.Done
+            imeAction = ImeAction.Search
         ),
         leadingIcon = {
             Icon(imageVector = Icons.Filled.Search)
         },
+        placeholder = {
+            Text(text = "Search")
+        },
         onImeActionPerformed = { action, softKeyboardController ->
-            if (action == ImeAction.Done) {
-                actionDone()
+            if (action == ImeAction.Search) {
+                actionSearch()
                 softKeyboardController?.hideSoftwareKeyboard()
             }
         },
+        onTextInputStarted = onTextInputStarted,
         singleLine = true,
         textStyle = textStyle
     )
