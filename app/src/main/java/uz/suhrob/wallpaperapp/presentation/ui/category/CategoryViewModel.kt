@@ -16,6 +16,8 @@ class CategoryViewModel @ViewModelInject constructor(
 ): ViewModel() {
     val photos: MutableState<List<Photo>> = mutableStateOf(listOf())
 
+    val category: MutableState<String> = mutableStateOf("")
+
     fun loadPhotos(category: String) = viewModelScope.launch {
         val result = repository.search(category, PHOTO_PER_PAGE, STARTING_PAGE)
         photos.value = result
