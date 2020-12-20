@@ -64,7 +64,7 @@ class SearchFragment : Fragment() {
                                 actionSearch = {
                                     viewModel.search(viewModel.query.value)
                                 },
-                                modifier = Modifier.fillMaxWidth()
+                                modifier = Modifier.fillMaxWidth().padding(end = 16.dp)
                             )
                         }
                     }) {
@@ -77,7 +77,7 @@ class SearchFragment : Fragment() {
                             ImageItem(imageUrl = item.portraitUrl) {
                                 findNavController().navigate(
                                     SearchFragmentDirections.actionSearchFragmentToPhotoFragment(
-                                        item.id
+                                        item.portraitUrl
                                     )
                                 )
                             }

@@ -21,8 +21,8 @@
             android:id="@+id/action_homeFragment_to_photoFragment"
             app:destination="@id/photoFragment">
             <argument
-                android:name="photo_id"
-                app:argType="integer" />
+                android:name="photo_url"
+                app:argType="string" />
         </action>
     </fragment>
     <fragment
@@ -33,8 +33,8 @@
             android:id="@+id/action_searchFragment_to_photoFragment"
             app:destination="@id/photoFragment">
             <argument
-                android:name="photo_id"
-                app:argType="integer" />
+                android:name="photo_url"
+                app:argType="string" />
         </action>
     </fragment>
     <fragment
@@ -45,8 +45,8 @@
             android:id="@+id/action_categoryFragment_to_photoFragment"
             app:destination="@id/photoFragment">
             <argument
-                android:name="photo_id"
-                app:argType="integer" />
+                android:name="photo_url"
+                app:argType="string" />
         </action>
     </fragment>
     <fragment

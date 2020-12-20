@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
                                 ImageItem(imageUrl = item.portraitUrl) {
                                     findNavController().navigate(
                                         HomeFragmentDirections.actionHomeFragmentToPhotoFragment(
-                                            item.id
+                                            item.portraitUrl
                                         )
                                     )
                                 }

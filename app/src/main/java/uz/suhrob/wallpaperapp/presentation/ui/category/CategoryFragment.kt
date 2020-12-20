@@ -61,7 +61,7 @@ class CategoryFragment : Fragment() {
                             ImageItem(imageUrl = item.portraitUrl) {
                                 findNavController().navigate(
                                     CategoryFragmentDirections.actionCategoryFragmentToPhotoFragment(
-                                        item.id
+                                        item.portraitUrl
                                     )
                                 )
                             }
