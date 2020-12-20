@@ -3,6 +3,7 @@ package uz.suhrob.wallpaperapp.presentation.components
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -47,7 +48,8 @@ fun SearchBox(
         },
         onTextInputStarted = onTextInputStarted,
         singleLine = true,
-        textStyle = textStyle
+        textStyle = textStyle,
+        activeColor = MaterialTheme.colors.onPrimary
     )
 }
 
