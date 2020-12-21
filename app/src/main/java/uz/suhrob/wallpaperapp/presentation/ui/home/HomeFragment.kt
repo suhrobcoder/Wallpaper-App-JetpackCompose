@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRowForIndexed
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
@@ -50,20 +49,22 @@ class HomeFragment : Fragment() {
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             val categories = viewModel.categories.value
-                            LazyRowForIndexed(items = categories) { index, item ->
-                                CategoryItem(
-                                    imageUrl = item.photoUrl,
-                                    title = item.title,
-                                    modifier = Modifier.padding(
-                                        start = if (index == 0) 16.dp else 4.dp,
-                                        end = if (index == categories.size - 1) 16.dp else 4.dp
-                                    )
-                                ) {
-                                    findNavController().navigate(
-                                        HomeFragmentDirections.actionHomeFragmentToCategoryFragment(
-                                            item.title
+                            LazyRow {
+                                itemsIndexed(items = categories) { index, item ->
+                                    CategoryItem(
+                                        imageUrl = item.photoUrl,
+                                        title = item.title,
+                                        modifier = Modifier.padding(
+                                            start = if (index == 0) 16.dp else 4.dp,
+                                            end = if (index == categories.size - 1) 16.dp else 4.dp
                                         )
-                                    )
+                                    ) {
+                                        findNavController().navigate(
+                                            HomeFragmentDirections.actionHomeFragmentToCategoryFragment(
+                                                item.title
+                                            )
+                                        )
+                                    }
                                 }
                             }
                             LazyGridFor(
