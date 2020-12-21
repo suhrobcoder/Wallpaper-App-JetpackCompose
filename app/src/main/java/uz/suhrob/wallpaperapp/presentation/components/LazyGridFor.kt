@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumnForIndexed
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -26,27 +26,28 @@ fun <T> LazyGridFor(
     itemContent: @Composable LazyItemScope.(T, Int) -> Unit
 ) {
     val chunkedList = items.chunked(rows)
-    LazyColumnForIndexed(
-        items = chunkedList,
+    LazyColumn(
         modifier = modifier.padding(
             horizontal = hPadding - spaceBetweenItems / 2,
             vertical = vPadding - spaceBetweenItems / 2
         )
-    ) { index, it ->
-        Row {
-            it.forEachIndexed { rowIndex, item ->
-                Box(
-                    modifier = Modifier
-                        .weight(1F)
-                        .align(Alignment.Top)
-                        .padding(spaceBetweenItems / 2),
-                    contentAlignment = Alignment.Center
-                ) {
-                    itemContent(item, index * rows + rowIndex)
+    ) {
+        itemsIndexed(items = chunkedList) { index, item ->
+            Row {
+                item.forEachIndexed { rowIndex, item ->
+                    Box(
+                        modifier = Modifier
+                            .weight(1F)
+                            .align(Alignment.Top)
+                            .padding(spaceBetweenItems / 2),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        itemContent(item, index * rows + rowIndex)
+                    }
                 }
-            }
-            repeat(rows - it.size) {
-                Box(modifier = Modifier.weight(1F).padding(spaceBetweenItems / 2)) {}
+                repeat(rows - item.size) {
+                    Box(modifier = Modifier.weight(1F).padding(spaceBetweenItems / 2)) {}
+                }
             }
         }
     }
