@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,7 +30,7 @@ fun ImageItem(
         val image by loadPicture(
             url = imageUrl,
             defaultImage = R.drawable.portrait_placeholder
-        ).collectAsState()
+        )
         image?.let {
             Image(bitmap = it.asImageBitmap())
         }

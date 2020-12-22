@@ -21,7 +21,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -67,7 +66,7 @@ class PhotoFragment : Fragment() {
                             val image by loadPicture(
                                 url = viewModel.photoUrl.value,
                                 defaultImage = R.drawable.portrait_placeholder
-                            ).collectAsState()
+                            )
                             image?.let {
                                 Image(
                                     bitmap = it.asImageBitmap(),
