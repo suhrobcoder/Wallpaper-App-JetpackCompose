@@ -9,7 +9,8 @@ class PhotoEntityMapper : DomainMapper<PhotoEntity, Photo> {
         return Photo(
             id = model.id,
             url = model.url,
-            portraitUrl = model.portraitUrl
+            smallUrl = model.portraitUrl.replace("h=1200&w=800", "h=600&w=400"),
+            portraitUrl = model.portraitUrl.replace("h=1200&w=800", "h=2160&w=1080")
         )
     }
 

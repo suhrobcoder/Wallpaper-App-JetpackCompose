@@ -15,14 +15,16 @@ import com.bumptech.glide.request.transition.Transition
 fun loadPicture(
     url: String,
     @DrawableRes defaultImage: Int
-): MutableState<Bitmap?> {
-    val bitmapState: MutableState<Bitmap?> = mutableStateOf(null)
+): MutableState<ImageStatus1> {
+    val imageStatus: MutableState<ImageStatus1> = mutableStateOf(ImageStatus1.notLoaded())
     Glide.with(AmbientContext.current)
         .asBitmap()
         .load(defaultImage)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                bitmapState.value = resource
+                if (imageStatus.value.status == ImageStatus1.Status.NOT_LOADED) {
+                    imageStatus.value = ImageStatus1.defaultImageLoaded(bitmap = resource)
+                }
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {}
@@ -32,10 +34,24 @@ fun loadPicture(
         .load(url)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                bitmapState.value = resource
+                imageStatus.value = ImageStatus1.loaded(bitmap = resource)
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {}
         })
-    return bitmapState
+    return imageStatus
+}
+
+data class ImageStatus1(val bitmap: Bitmap?, val status: Status) {
+    enum class Status {
+        NOT_LOADED, DEFAULT_IMAGE_LOADED, LOADED
+    }
+
+    companion object {
+        fun notLoaded() = ImageStatus1(null, Status.NOT_LOADED)
+
+        fun defaultImageLoaded(bitmap: Bitmap) = ImageStatus1(bitmap, Status.DEFAULT_IMAGE_LOADED)
+
+        fun loaded(bitmap: Bitmap) = ImageStatus1(bitmap, Status.LOADED)
+    }
 }

@@ -58,7 +58,7 @@ class CategoryFragment : Fragment() {
                             hPadding = 16.dp,
                             vPadding = 8.dp
                         ) { item, _ ->
-                            ImageItem(imageUrl = item.portraitUrl) {
+                            ImageItem(imageUrl = item.smallUrl) {
                                 findNavController().navigate(
                                     CategoryFragmentDirections.actionCategoryFragmentToPhotoFragment(
                                         item.portraitUrl

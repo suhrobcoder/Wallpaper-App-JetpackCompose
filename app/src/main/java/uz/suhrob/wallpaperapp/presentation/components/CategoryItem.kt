@@ -43,7 +43,7 @@ fun CategoryItem(
             url = imageUrl,
             defaultImage = R.drawable.album_placeholder
         )
-        image?.let {
+        image.bitmap?.let {
             Image(
                 bitmap = it.asImageBitmap(),
                 contentScale = ContentScale.Crop,
