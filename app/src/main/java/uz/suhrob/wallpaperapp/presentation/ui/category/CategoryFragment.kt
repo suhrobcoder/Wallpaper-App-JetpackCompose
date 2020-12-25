@@ -5,10 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.clickable
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
@@ -21,7 +18,6 @@ import androidx.navigation.findNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import uz.suhrob.wallpaperapp.domain.model.Photo
 import uz.suhrob.wallpaperapp.presentation.components.ImageItem
 import uz.suhrob.wallpaperapp.presentation.components.LazyGridFor
 import uz.suhrob.wallpaperapp.presentation.theme.WallpaperAppTheme
@@ -87,6 +83,8 @@ fun CategoryTopAppBar(
         title = {
             Text(text = title)
         },
+        backgroundColor = MaterialTheme.colors.primary,
+        contentColor = MaterialTheme.colors.onPrimary,
         navigationIcon = {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
