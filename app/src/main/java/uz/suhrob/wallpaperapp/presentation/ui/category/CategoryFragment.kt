@@ -18,8 +18,10 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.paging.compose.collectAsLazyPagingItems
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import uz.suhrob.wallpaperapp.domain.model.Photo
 import uz.suhrob.wallpaperapp.presentation.components.ImageItem
 import uz.suhrob.wallpaperapp.presentation.components.LazyGridFor
 import uz.suhrob.wallpaperapp.presentation.theme.WallpaperAppTheme
@@ -52,18 +54,21 @@ class CategoryFragment : Fragment() {
                             }
                         }
                     ) {
-                        LazyGridFor(
-                            items = viewModel.photos.value,
-                            spaceBetweenItems = 8.dp,
-                            hPadding = 16.dp,
-                            vPadding = 8.dp
-                        ) { item, _ ->
-                            ImageItem(imageUrl = item.smallUrl) {
-                                findNavController().navigate(
-                                    CategoryFragmentDirections.actionCategoryFragmentToPhotoFragment(
-                                        item.portraitUrl
+                        viewModel.photos.value?.let {
+                            val pagingPhotos = it.collectAsLazyPagingItems()
+                            LazyGridFor(
+                                pagingItems = pagingPhotos,
+                                spaceBetweenItems = 8.dp,
+                                hPadding = 16.dp,
+                                vPadding = 8.dp
+                            ) { item, _ ->
+                                ImageItem(imageUrl = item.smallUrl) {
+                                    findNavController().navigate(
+                                        CategoryFragmentDirections.actionCategoryFragmentToPhotoFragment(
+                                            item.portraitUrl
+                                        )
                                     )
-                                )
+                                }
                             }
                         }
                     }
