@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.paging.compose.collectAsLazyPagingItems
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import uz.suhrob.wallpaperapp.presentation.components.CategoryItem
@@ -67,8 +68,9 @@ class HomeFragment : Fragment() {
                                     }
                                 }
                             }
+                            val lazyPhotos = viewModel.photos.collectAsLazyPagingItems()
                             LazyGridFor(
-                                items = viewModel.photos.value,
+                                pagingItems = lazyPhotos,
                                 spaceBetweenItems = 8.dp,
                                 hPadding = 16.dp,
                                 vPadding = 8.dp
