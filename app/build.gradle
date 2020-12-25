@@ -77,6 +77,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
 
+    def paging_compose = "1.0.0-alpha04"
+    implementation "androidx.paging:paging-compose:$paging_compose"
+
     def room = "2.2.5"
     implementation "androidx.room:room-runtime:$room"
     kapt "androidx.room:room-compiler:$room"
