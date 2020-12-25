@@ -9,7 +9,8 @@ class PhotoDtoMapper : DomainMapper<PhotoDto, Photo> {
         Photo(
             id = model.id,
             url = model.url,
-            portraitUrl = model.source.portrait
+            smallUrl = model.source.portrait.replace("h=1200&w=800", "h=600&w=400"),
+            portraitUrl = model.source.portrait.replace("h=1200&w=800", "h=2160&w=1080")
         )
 
     override fun mapFromDomainModel(domainModel: Photo): PhotoDto =

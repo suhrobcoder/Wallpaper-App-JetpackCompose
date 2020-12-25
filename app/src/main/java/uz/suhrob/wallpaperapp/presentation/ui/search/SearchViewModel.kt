@@ -5,19 +5,22 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import uz.suhrob.wallpaperapp.domain.model.Photo
 import uz.suhrob.wallpaperapp.other.PHOTO_PER_PAGE
-import uz.suhrob.wallpaperapp.other.STARTING_PAGE
 import uz.suhrob.wallpaperapp.repository.PhotoRepository
+import uz.suhrob.wallpaperapp.repository.paging.PhotoPagingSource
 
 class SearchViewModel @ViewModelInject constructor(
     private val repository: PhotoRepository
 ) : ViewModel() {
-    val photos: MutableState<List<Photo>> = mutableStateOf(listOf())
+    val photos: MutableState<Flow<PagingData<List<Photo>>>?> = mutableStateOf(null)
     val query: MutableState<String> = mutableStateOf("")
     private var searchJob: Job? = null
 
@@ -26,8 +29,9 @@ class SearchViewModel @ViewModelInject constructor(
         searchJob = Job()
         searchJob?.let { job ->
             CoroutineScope(viewModelScope.coroutineContext + job).launch {
-                val result = repository.search(query, PHOTO_PER_PAGE, STARTING_PAGE)
-                photos.value = result
+                photos.value = Pager(PagingConfig(pageSize = PHOTO_PER_PAGE)) {
+                    PhotoPagingSource(repository, isSearching = true, query = query)
+                }.flow
             }
         }
     }

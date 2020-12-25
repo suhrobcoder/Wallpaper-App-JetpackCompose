@@ -21,7 +21,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +35,7 @@ import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import uz.suhrob.wallpaperapp.R
+import uz.suhrob.wallpaperapp.other.ImageStatus1
 import uz.suhrob.wallpaperapp.other.loadPicture
 import uz.suhrob.wallpaperapp.presentation.components.BottomBar
 import uz.suhrob.wallpaperapp.presentation.components.BottomBarItem
@@ -67,8 +67,8 @@ class PhotoFragment : Fragment() {
                             val image by loadPicture(
                                 url = viewModel.photoUrl.value,
                                 defaultImage = R.drawable.portrait_placeholder
-                            ).collectAsState()
-                            image?.let {
+                            )
+                            image.bitmap?.let {
                                 Image(
                                     bitmap = it.asImageBitmap(),
                                     modifier = Modifier.fillMaxSize(),
@@ -99,8 +99,14 @@ class PhotoFragment : Fragment() {
                                     title = "Set as",
                                     icon = vectorResource(id = R.drawable.ic_image)
                                 ) {
-                                    image?.let {
-                                        setPhotoAsWallpaper(it)
+                                    if (image.status == ImageStatus1.Status.LOADED) {
+                                        setPhotoAsWallpaper(image.bitmap!!)
+                                    } else {
+                                        Toast.makeText(
+                                            requireContext(),
+                                            "Image not loaded yet",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
                                 }
                             }

@@ -3,13 +3,14 @@ package uz.suhrob.wallpaperapp.presentation.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -25,15 +26,20 @@ fun ImageItem(
 ) {
     Box(
         modifier = modifier
+            .fillMaxWidth()
             .clip(RoundedCornerShape(size = 32.dp))
             .clickable(onClick = onClick)
     ) {
         val image by loadPicture(
             url = imageUrl,
             defaultImage = R.drawable.portrait_placeholder
-        ).collectAsState()
-        image?.let {
-            Image(bitmap = it.asImageBitmap())
+        )
+        image.bitmap?.let {
+            Image(
+                bitmap = it.asImageBitmap(),
+                modifier = Modifier.fillMaxWidth(),
+                contentScale = ContentScale.Crop
+            )
         }
     }
 }

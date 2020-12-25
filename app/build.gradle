@@ -14,7 +14,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -76,6 +76,9 @@ dependencies {
     def retrofit = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+
+    def paging_compose = "1.0.0-alpha04"
+    implementation "androidx.paging:paging-compose:$paging_compose"
 
     def navigation = "2.3.2"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"

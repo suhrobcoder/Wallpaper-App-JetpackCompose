@@ -5,10 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.clickable
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
@@ -18,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.paging.compose.collectAsLazyPagingItems
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import uz.suhrob.wallpaperapp.presentation.components.ImageItem
@@ -52,18 +50,21 @@ class CategoryFragment : Fragment() {
                             }
                         }
                     ) {
-                        LazyGridFor(
-                            items = viewModel.photos.value,
-                            spaceBetweenItems = 8.dp,
-                            hPadding = 16.dp,
-                            vPadding = 8.dp
-                        ) { item, _ ->
-                            ImageItem(imageUrl = item.portraitUrl) {
-                                findNavController().navigate(
-                                    CategoryFragmentDirections.actionCategoryFragmentToPhotoFragment(
-                                        item.portraitUrl
+                        viewModel.photos.value?.let {
+                            val pagingPhotos = it.collectAsLazyPagingItems()
+                            LazyGridFor(
+                                pagingItems = pagingPhotos,
+                                spaceBetweenItems = 8.dp,
+                                hPadding = 16.dp,
+                                vPadding = 8.dp
+                            ) { item, _ ->
+                                ImageItem(imageUrl = item.smallUrl) {
+                                    findNavController().navigate(
+                                        CategoryFragmentDirections.actionCategoryFragmentToPhotoFragment(
+                                            item.portraitUrl
+                                        )
                                     )
-                                )
+                                }
                             }
                         }
                     }
@@ -82,6 +83,8 @@ fun CategoryTopAppBar(
         title = {
             Text(text = title)
         },
+        backgroundColor = MaterialTheme.colors.primary,
+        contentColor = MaterialTheme.colors.onPrimary,
         navigationIcon = {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
