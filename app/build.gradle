@@ -80,11 +80,6 @@ dependencies {
     def paging_compose = "1.0.0-alpha04"
     implementation "androidx.paging:paging-compose:$paging_compose"
 
-    def room = "2.2.5"
-    implementation "androidx.room:room-runtime:$room"
-    kapt "androidx.room:room-compiler:$room"
-    implementation "androidx.room:room-ktx:$room"
-
     def navigation = "2.3.2"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation"
