@@ -1,33 +1,35 @@
 package uz.suhrob.wallpaperapp.network.model
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import uz.suhrob.wallpaperapp.network.response.PhotoSource
 
+@Serializable
 data class PhotoDto(
-    @SerializedName("id")
+    @SerialName("id")
     var id: Int = 0,
 
-    @SerializedName("width")
+    @SerialName("width")
     var width: Int = 0,
 
-    @SerializedName("height")
+    @SerialName("height")
     var height: Int = 0,
 
-    @SerializedName("url")
+    @SerialName("url")
     var url: String = "",
 
-    @SerializedName("photographer")
+    @SerialName("photographer")
     var photographer: String = "",
 
-    @SerializedName("photographer_url")
+    @SerialName("photographer_url")
     var photographerUrl: String = "",
 
-    @SerializedName("photographer_id")
+    @SerialName("photographer_id")
     var photographerId: Int = 0,
 
-    @SerializedName("src")
+    @SerialName("src")
     var source: PhotoSource = PhotoSource(),
 
-    @SerializedName("liked")
+    @SerialName("liked")
     var liked: Boolean = false
 )
