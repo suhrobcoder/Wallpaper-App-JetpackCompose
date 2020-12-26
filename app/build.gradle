@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -75,7 +76,9 @@ dependencies {
 
     def retrofit = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
 
     def paging_compose = "1.0.0-alpha04"
     implementation "androidx.paging:paging-compose:$paging_compose"

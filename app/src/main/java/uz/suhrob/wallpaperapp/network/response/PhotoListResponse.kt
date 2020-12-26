@@ -1,21 +1,23 @@
 package uz.suhrob.wallpaperapp.network.response
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import uz.suhrob.wallpaperapp.network.model.PhotoDto
 
+@Serializable
 data class PhotoListResponse(
-    @SerializedName("total_results")
+    @SerialName("total_results")
     val totalResults: Int,
 
-    @SerializedName("page")
+    @SerialName("page")
     val page: Int,
 
-    @SerializedName("per_page")
+    @SerialName("per_page")
     val perPage: Int,
 
-    @SerializedName("photos")
+    @SerialName("photos")
     val photos: List<PhotoDto>,
 
-    @SerializedName("next_page")
+    @SerialName("next_page")
     val nextPage: String
 )
