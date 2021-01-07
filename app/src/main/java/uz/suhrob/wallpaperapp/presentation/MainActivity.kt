@@ -16,7 +16,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -36,7 +35,6 @@ import java.io.IOException
 
 @ExperimentalSerializationApi
 @ExperimentalCoroutinesApi
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
