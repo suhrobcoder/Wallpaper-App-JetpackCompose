@@ -61,8 +61,8 @@ fun PhotoScreen(
                     imageVector = Icons.Filled.ArrowBack,
                     modifier = Modifier
                         .padding(8.dp)
-                        .clickable(onClick = { navController.popBackStack() })
                         .clip(RoundedCornerShape(percent = 50))
+                        .clickable(onClick = { navController.popBackStack() })
                         .padding(8.dp)
                 )
             }

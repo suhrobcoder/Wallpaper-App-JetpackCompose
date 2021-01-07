@@ -72,8 +72,8 @@ fun CategoryTopAppBar(
                 imageVector = Icons.Filled.ArrowBack,
                 modifier = Modifier
                     .padding(8.dp)
-                    .clickable(onClick = { onNavigationIconClick() })
                     .clip(RoundedCornerShape(percent = 50))
+                    .clickable(onClick = { onNavigationIconClick() })
                     .padding(8.dp)
             )
         },
