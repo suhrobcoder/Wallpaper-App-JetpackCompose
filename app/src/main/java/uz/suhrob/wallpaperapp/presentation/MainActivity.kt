@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
                                 PhotoScreen(
                                     navController = navController,
                                     photoUrl = photoUrl,
+                                    context = applicationContext,
                                     share = { share(photoUrl) },
                                     set = { bitmap -> setPhotoAsWallpaper(bitmap) })
                             }

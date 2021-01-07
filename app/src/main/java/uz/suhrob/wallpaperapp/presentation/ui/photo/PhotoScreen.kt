@@ -1,5 +1,6 @@
 package uz.suhrob.wallpaperapp.presentation.ui.photo
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -19,9 +21,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.AmbientContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -30,12 +32,12 @@ import uz.suhrob.wallpaperapp.other.ImageStatus1
 import uz.suhrob.wallpaperapp.other.loadPicture
 import uz.suhrob.wallpaperapp.presentation.components.BottomBar
 import uz.suhrob.wallpaperapp.presentation.components.BottomBarItem
-import uz.suhrob.wallpaperapp.repository.PhotoRepository
 
 @Composable
 fun PhotoScreen(
     navController: NavController,
     photoUrl: String,
+    context: Context,
     share: () -> Unit,
     set: (Bitmap) -> Unit
 ) {
@@ -60,6 +62,7 @@ fun PhotoScreen(
                     modifier = Modifier
                         .padding(8.dp)
                         .clickable(onClick = { navController.popBackStack() })
+                        .clip(RoundedCornerShape(percent = 50))
                         .padding(8.dp)
                 )
             }
@@ -80,7 +83,7 @@ fun PhotoScreen(
                         set(image.bitmap!!)
                     } else {
                         Toast.makeText(
-                            AmbientContext.current,
+                            context,
                             "Image not loaded yet",
                             Toast.LENGTH_SHORT
                         ).show()
