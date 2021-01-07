@@ -1,30 +1,31 @@
 package uz.suhrob.wallpaperapp.network.response
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-
+@Serializable
 data class PhotoSource(
-    @SerializedName("original")
+    @SerialName("original")
     var original: String = "",
 
-    @SerializedName("large2x")
+    @SerialName("large2x")
     var large2x: String = "",
 
-    @SerializedName("large")
+    @SerialName("large")
     var large: String = "",
 
-    @SerializedName("medium")
+    @SerialName("medium")
     var medium: String = "",
 
-    @SerializedName("small")
+    @SerialName("small")
     var small: String = "",
 
-    @SerializedName("portrait")
+    @SerialName("portrait")
     var portrait: String = "",
 
-    @SerializedName("landscape")
+    @SerialName("landscape")
     var landscape: String = "",
 
-    @SerializedName("tiny")
+    @SerialName("tiny")
     var tiny: String = "",
 )
