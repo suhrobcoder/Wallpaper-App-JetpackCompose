@@ -1,5 +1,6 @@
 package uz.suhrob.wallpaperapp.presentation.ui.photo
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -23,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.AmbientContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -32,12 +32,12 @@ import uz.suhrob.wallpaperapp.other.ImageStatus1
 import uz.suhrob.wallpaperapp.other.loadPicture
 import uz.suhrob.wallpaperapp.presentation.components.BottomBar
 import uz.suhrob.wallpaperapp.presentation.components.BottomBarItem
-import uz.suhrob.wallpaperapp.repository.PhotoRepository
 
 @Composable
 fun PhotoScreen(
     navController: NavController,
     photoUrl: String,
+    context: Context,
     share: () -> Unit,
     set: (Bitmap) -> Unit
 ) {
@@ -83,7 +83,7 @@ fun PhotoScreen(
                         set(image.bitmap!!)
                     } else {
                         Toast.makeText(
-                            AmbientContext.current,
+                            context,
                             "Image not loaded yet",
                             Toast.LENGTH_SHORT
                         ).show()
