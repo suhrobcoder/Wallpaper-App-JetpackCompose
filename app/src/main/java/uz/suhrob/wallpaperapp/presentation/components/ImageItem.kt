@@ -12,7 +12,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import uz.suhrob.wallpaperapp.R
 import uz.suhrob.wallpaperapp.other.loadPicture
@@ -42,10 +41,4 @@ fun ImageItem(
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewImageItem() {
-    ImageItem(imageUrl = "")
 }

@@ -15,7 +15,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 
 @Composable
 fun SearchBox(
@@ -51,10 +50,4 @@ fun SearchBox(
         textStyle = textStyle,
         activeColor = MaterialTheme.colors.onPrimary
     )
-}
-
-@Preview
-@Composable
-fun PreviewSearchBox() {
-    SearchBox("", {})
 }
