@@ -3,6 +3,7 @@ package uz.suhrob.wallpaperapp.presentation.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -26,6 +27,7 @@ fun ImageItem(
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .aspectRatio(2f / 3)
             .clip(RoundedCornerShape(size = 32.dp))
             .clickable(onClick = onClick)
     ) {
