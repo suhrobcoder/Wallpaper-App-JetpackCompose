@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                             SearchScreen(repository = repository, navController = navController)
                         }
                         composable(
-                            "photo/photoUrl",
+                            "photo/{photoUrl}",
                             arguments = listOf(navArgument(name = "photoUrl") { defaultValue = "" })
                         ) {
                             it.arguments?.getString("photoUrl")?.let { photoUrl ->
